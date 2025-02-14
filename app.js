@@ -7,7 +7,7 @@ const rl = readline.createInterface({
 });
 
 async function runTrafficGenerator(url, loops) {
-    const concurrency = 5; // Reduced number of parallel browsers
+    const concurrency = 5; 
     const totalBatches = Math.ceil(loops / concurrency);
     
     for (let batch = 0; batch < totalBatches; batch++) {
@@ -22,7 +22,7 @@ async function runTrafficGenerator(url, loops) {
                 
                     await browserPage.goto(url, { waitUntil: 'networkidle2' });
                     
-                    // Simulate some user interactions
+                 
                     await browserPage.mouse.move(
                         Math.random() * 800,
                         Math.random() * 600
@@ -47,7 +47,7 @@ async function runTrafficGenerator(url, loops) {
     }
 }
 
-rl.question('Enter the URL to generate traffic for: ', (url) => {
+rl.question('Enter the URL: ', (url) => {
     rl.question('Enter number of visits: ', (loops) => {
         const numLoops = parseInt(loops);
         if (isNaN(numLoops) || numLoops <= 0) {
@@ -57,7 +57,7 @@ rl.question('Enter the URL to generate traffic for: ', (url) => {
         
         runTrafficGenerator(url, numLoops)
             .then(() => {
-                console.log('Traffic generation completed');
+                console.log(' generation completed');
                 rl.close();
             })
             .catch(err => {
